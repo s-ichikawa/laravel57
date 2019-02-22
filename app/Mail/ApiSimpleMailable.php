@@ -30,24 +30,12 @@ class ApiSimpleMailable extends Mailable
     public function build()
     {
         return $this
-            ->view([], [
-                'name' => 's-ichikawa'
-            ])
-            ->to(env('AUTHOR_EMAIL'), 'tester')
+            ->view("mails.simple")
             ->subject('api sample mailable')
             ->sendgrid([
-                'personalizations' => [
-                    [
-                        'dynamic_template_data' => [
-                            'title' => 'Test Title',
-                            'name' => 's-ichikawa',
-                        ],
-                    ],
-                ],
                 'categories' => [
-                    'api_simple_mailable'
+                    env("SENDGRID_CATEGORY")
                 ],
-                'template_id' => config('services.sendgrid.templates.dynamic_sample'),
             ]);
     }
 }
