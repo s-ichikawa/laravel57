@@ -7,7 +7,7 @@ use Illuminate\Mail\Message;
 use Sichikawa\LaravelSendgridDriver\SendGrid;
 use Sichikawa\LaravelSendgridDriver\Transport\SendgridTransport;
 
-class ApiSimple extends Command
+class ApiSimpleText extends Command
 {
     use SendGrid;
 
@@ -16,7 +16,7 @@ class ApiSimple extends Command
      *
      * @var string
      */
-    protected $signature = 'sendgrid:mail-api-simple';
+    protected $signature = 'sendgrid:mail-api-simple-text';
 
     /**
      * The console command description.
@@ -42,9 +42,9 @@ class ApiSimple extends Command
      */
     public function handle()
     {
-        app('mailer')->send('mails.simple_php', [], function (Message $message) {
+        app('mailer')->send(['text' => 'mails.simple_text'], [], function (Message $message) {
             $message
-                ->subject('[Sample] simple mail.')
+                ->subject('[Sample] simple text mail.')
                 ->to('dumy@example.com')
                 ->replyTo('ichikawa.shingo.0829+reply@gmail.com')
                 ->embedData(self::sgEncode([
@@ -54,12 +54,9 @@ class ApiSimple extends Command
                                 'email' => 'ichikawa.shingo.0829+test1@gmail.com',
                                 'name'  => 's-ichikawa1',
                             ],
-                            'substitutions' => [
-                                '{{name}}' => 'test_name',
-                                '{{email}}' => 'test_email'
-                            ],
                         ],
                     ],
+                    'categories' => ['Order']
                 ]), SendgridTransport::SMTP_API_NAME);
         });
     }

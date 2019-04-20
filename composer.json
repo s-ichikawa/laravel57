@@ -11,8 +11,9 @@
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
+        "laravel/telescope": "^1.0",
         "laravel/tinker": "^1.0",
-        "s-ichikawa/laravel-sendgrid-driver": "^2.0"
+        "s-ichikawa/laravel-sendgrid-driver": "dev-endpoint-conf"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",

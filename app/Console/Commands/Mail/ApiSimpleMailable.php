@@ -37,6 +37,7 @@ class ApiSimpleMailable extends Command
      */
     public function handle()
     {
-        \Mail::to(env('AUTHOR_EMAIL'), 'tester')->send(new \App\Mail\ApiSimpleMailable());
+        \Mail::to(env('AUTHOR_EMAIL'), 'tester')
+            ->cc("s-ichikawa@mercari.com")->send(new \App\Mail\ApiSimpleMailable());
     }
 }
