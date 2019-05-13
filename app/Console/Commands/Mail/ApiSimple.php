@@ -51,15 +51,15 @@ class ApiSimple extends Command
                     'personalizations' => [
                         [
                             'to' => [
-                                'email' => 'ichikawa.shingo.0829+test1@gmail.com',
+                                'email' => 'ichikawa.shingo.0829@gmail.com',
                                 'name'  => 's-ichikawa1',
                             ],
-                            'substitutions' => [
-                                '{{name}}' => 'test_name',
-                                '{{email}}' => 'test_email'
+                            'dynamic_template_data' => [
+                                'name' => 'Shingo Ichikawa',
                             ],
                         ],
                     ],
+                    'template_id' => config('services.sendgrid.templates.dynamic_sample')
                 ]), SendgridTransport::SMTP_API_NAME);
         });
     }
